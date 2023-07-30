@@ -1,6 +1,6 @@
 # FoodTruckProject
 
-#Overview
+# Overview
 Hello and Welcome to my Food Truck Project! Here I have a command line program that randomly generates unique ID's for Food Trucks after they submit their truck's information. 
 
 As well as looping a menu for the customers to retrieve the input information from the truck owners!
