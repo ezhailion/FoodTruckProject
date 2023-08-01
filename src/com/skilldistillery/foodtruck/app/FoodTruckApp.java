@@ -22,7 +22,7 @@ public class FoodTruckApp {
 
 		int input = 0;
 		do {
-			showMenu(kb);
+			showMenu();
 			input = kb.nextInt();
 			kb.nextLine();
 			inputChoice(input);
@@ -58,7 +58,7 @@ public class FoodTruckApp {
 	}
 
 	// Displays menu for the user
-	public void showMenu(Scanner kb) {
+	public void showMenu() {
 
 		System.out.println();
 		System.out.println("************************************");
@@ -77,40 +77,16 @@ public class FoodTruckApp {
 		// display all input trucks
 
 		if (input == 1) {
-			for (int i = 0; i < arrOfFoodTrucks.length; i++) {
-				FoodTruck foodTruck = arrOfFoodTrucks[i];
-				if (foodTruck != null) {
-					System.out.println(arrOfFoodTrucks[i]);
-				}
-			}
+			displayTrucks();
 			// find the highest rating of all of the trucks that have been input, and
 			// display.
 		} else if (input == 2) {
 
-			FoodTruck highestRating = new FoodTruck();
-			highestRating.setRating(0);
-			for (FoodTruck foodTruck : arrOfFoodTrucks) {
-				if (foodTruck != null && foodTruck.getRating() > highestRating.getRating()) {
-
-					highestRating = foodTruck;
-				}
-			}
-			System.out.println(highestRating.getNameOfTruck() + " is the highest with: " + highestRating.getRating());
-
+			highestRating();
 			// add ratings of all trucks and divide by the length of occupied indexes
 
 		} else if (input == 3) {
-			double average;
-			double rate = 0;
-			for (int i = 0; i < arrOfFoodTrucks.length; i++) {
-				FoodTruck foodTruck = arrOfFoodTrucks[i];
-				if (foodTruck != null) {
-					rate = foodTruck.getRating();
-					rate += foodTruck.getRating();
-				}
-			}
-			average = rate / lengthOfArray(arrOfFoodTrucks);
-			System.out.println("Our average rating of our food trucks is: " + average);
+			averageRating();
 
 		} else if (input > 4) {
 			System.err.println("That's not a valid input!");
@@ -133,5 +109,40 @@ public class FoodTruckApp {
 
 		return counter;
 
+	}
+
+	public void displayTrucks() {
+		for (FoodTruck foodTruck : arrOfFoodTrucks) {
+
+			if (foodTruck != null) {
+				System.out.println(foodTruck);
+			}
+		}
+	}
+
+	public void highestRating() {
+		FoodTruck highestRating = new FoodTruck();
+		highestRating.setRating(0);
+		for (FoodTruck foodTruck : arrOfFoodTrucks) {
+			if (foodTruck != null && foodTruck.getRating() > highestRating.getRating()) {
+
+				highestRating = foodTruck;
+			}
+		}
+		System.out.println(highestRating.getNameOfTruck() + " is the highest with: " + highestRating.getRating());
+
+	}
+
+	public void averageRating() {
+		double average;
+		double rate = 0;
+		for (FoodTruck foodTruck : arrOfFoodTrucks) {
+
+			if (foodTruck != null) {
+				rate += foodTruck.getRating();
+			}
+		}
+		average = rate / lengthOfArray(arrOfFoodTrucks);
+		System.out.println("Our average rating of our food trucks is: " + average);
 	}
 }
